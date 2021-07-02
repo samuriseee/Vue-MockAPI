@@ -86,9 +86,9 @@ export default {
   font-size: 18px;
   border-radius: 20px;
   transition: 0.2s;
+  cursor: pointer;
 }
 .pluginBox input[type="submit"]:hover {
-  cursor: pointer;
   background: #e95338;
   color: #fff;
 }

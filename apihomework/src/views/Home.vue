@@ -80,6 +80,7 @@ export default {
   transition: 0.5s;
 }
 .home .filter button:hover {
+  background: #e95338;
   box-shadow: 3px 3px rgba(0, 0, 0, 0.4);
 }
 .listed {
