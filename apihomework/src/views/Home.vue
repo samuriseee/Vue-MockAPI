@@ -1,6 +1,12 @@
 <template>
   <div class="home">
-    <h1>Companies</h1>
+    <div class="companies">
+      <h1>Companies</h1>
+      <p>List of Companies on the platform</p>
+    </div>
+    <div class="filter">
+      <button><i class="fas fa-filter"></i>Filter</button>
+    </div>
     <div class="listed">
       <div v-for="user in users" :key="user.id" @click="toDetails(user.id)">
         <img :src="user.avatar" alt="#" />
@@ -40,6 +46,42 @@ export default {
 };
 </script>
 <style scoped>
+.home .companies {
+  margin-left: 20px;
+  text-align: left;
+  font-size: 1.5rem;
+}
+.home .companies h1 {
+  padding-bottom: 0px;
+}
+.home .companies p {
+  margin-top: -10px;
+  font-size: 1rem;
+  opacity: 0.8;
+}
+.home .filter {
+  display: flex;
+  padding: 10px;
+  justify-content: flex-end;
+}
+.home .filter button {
+  width: 100px;
+  height: 40px;
+  color: #fff;
+  background: #fa7c65;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 7px;
+  margin-right: 10px;
+  transition: 0.5s;
+}
+.home .filter button:hover {
+  box-shadow: 3px 3px rgba(0, 0, 0, 0.4);
+}
 .listed {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
