@@ -144,6 +144,7 @@ body {
   flex-direction: column;
   margin: 20px;
   border-radius: 7px;
+  cursor: pointer;
 }
 .button:hover {
   background: #e95338;

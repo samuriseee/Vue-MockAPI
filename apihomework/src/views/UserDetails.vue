@@ -1,11 +1,11 @@
 <template>
   <div class="container">
     <div class="userInfo">
-      <img :src="user.avatar" alt="" />
+      <img :src="person.avatar" alt="" />
       <div class="text">
-        <div>{{ user.name }}</div>
+        <div>{{ person.name }}</div>
         <div style="font-size: 1.8rem; opacity: 0.8">
-          {{ user.phoneNumber }}
+          {{ person.phoneNumber }}
         </div>
       </div>
     </div>
@@ -32,11 +32,12 @@ export default {
       edit: false,
       editName: "",
       editPhone: "",
+      url:"http://localhost:3000/people",
     };
   },
   async created() {
     const response = await axios.get(
-      `https://60dbf9c3c2b6280017feb5d7.mockapi.io/v1/users/${this.$route.params.id}`
+      `http://localhost:3000/people/${this.$route.params.id}`
     );
     this.user = response.data;
     console.log(response);
@@ -44,7 +45,7 @@ export default {
   methods: {
     deleteUser(id) {
       axios.delete(
-        `https://60dbf9c3c2b6280017feb5d7.mockapi.io/v1/users/${id}`
+        `http://localhost:3000/people/${id}`
       );
       this.$router.push(`/`);
     },
@@ -94,6 +95,7 @@ body {
   flex-direction: column;
   margin: 20px;
   border-radius: 7px;
+  cursor:pointer;
 }
 .button button:hover {
   background: #e95338;

@@ -3,14 +3,11 @@
     <form v-on:submit.prevent="addUser()" class="pluginBox">
       <h1>SIGN IN</h1>
       <p>Username:</p>
-      <input type="text" v-model="newUser.name" placeholder="aaaaa" required />
-      <p>Phone Number:</p>
-      <input
-        type="text"
-        v-model="newUser.phoneNumber"
-        placeholder="12345678"
-        required
-      />
+      <input type="text" v-model="newUser.name" placeholder="aaaaa" required/>
+      <p>Where do you work?:</p>
+      <input type="text" v-model="newUser.city" required>
+      <p>Which company?:</p>
+      <input type="text" v-model="newUser.companyName" required>
       <!-- <p>Avatar profile</p>
       <input type="text" v-model="newUser.avatar" /> -->
       <input type="submit" value="Resgeter" />
@@ -28,14 +25,19 @@ export default {
       newUser: {
         name: "",
         phoneNumber: "",
+        city: "",
+        companyName: "",
       },
     };
   },
   methods: {
     addUser() {
-      axios.post("https://60dbf9c3c2b6280017feb5d7.mockapi.io/v1/users", {
+      axios.post("http://localhost:3000/people", {
         name: this.newUser.name,
         phoneNumber: this.newUser.phoneNumber,
+        city: this.newUser.city,
+        companyName: this.newUser.companyName,
+        
       });
       this.$router.push(`/`);
     },
@@ -46,7 +48,6 @@ export default {
 <style>
 .pluginBox {
   width: 320px;
-  height: 420px;
   background: transparent;
   border: 1px solid #fff;
   color: #000;

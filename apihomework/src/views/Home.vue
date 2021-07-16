@@ -5,45 +5,88 @@
       <p>List of Companies on the platform</p>
     </div>
     <div class="filter">
+      <Pagination
+        v-if="tableData"
+        :totalRecords="tableData.length"
+        :perPageOptions="perPageOptions"
+        v-model="pagination"
+      />
       <button><i class="fas fa-filter"></i>Filter</button>
     </div>
-    <div class="listed">
-      <div v-for="user in users" :key="user.id" @click="toDetails(user.id)">
-        <img :src="user.avatar" alt="#" />
-        <div class="name">{{ user.name }}</div>
-        <div class="text">
-          <span><i class="fas fa-id-card"></i> {{ user.id }}</span>
-          <span><i class="fas fa-phone"></i> {{ user.phoneNumber }}</span>
-        </div>
-      </div>
-    </div>
+    <main>
+      <Table
+        v-if="tableData"
+        :theData="computedTableData"
+        :config="config"
+        :style="{height: '600px'}"
+      />
+    </main>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import axios from "axios";
+import Table from '../components/uncommon/Table.vue'
+import Pagination from '../components/uncommon/Pagination'
+
+const perPageOptions = [10, 20, 30]
 
 export default {
-  name: "Home",
-  data() {
+  components: {
+    Table,
+    Pagination,
+  },
+  data: function () {
     return {
-      users: 0,
-    };
+      perPageOptions,
+      tableData: undefined,
+      pagination: { page: 1, perPage: perPageOptions[0] },
+      config: [
+        {
+          key: 'avatar',
+          title: 'Avatar',
+          type: 'image'
+        },
+        {
+          key: 'name',
+          title: 'Name',
+          type: 'text'
+        },
+        {
+          key: 'city',
+          title: 'City',
+          type: 'text'
+        },
+        {
+          key: 'companyName',
+          title: 'Company',
+          type: 'text'
+        },
+        {
+          key: 'createdAt',
+          title: 'Signup Date',
+          type: 'date'
+        }
+      ]
+    }
   },
-  async created() {
-    const response = await axios.get(
-      `https://60dbf9c3c2b6280017feb5d7.mockapi.io/v1/users`
-    );
-    this.users = response.data;
-    console.log(response.data);
+  computed: {
+    computedTableData () {
+      if (!this.tableData) return []
+      else {
+        const firstIndex = (this.pagination.page - 1) * this.pagination.perPage
+        const lastIndex = this.pagination.page * this.pagination.perPage
+
+        return this.tableData.slice(firstIndex, lastIndex)
+      }
+    }
   },
-  methods: {
-    toDetails(id) {
-      this.$router.push(`/user/${id}`);
-    },
-  },
-};
+  mounted () {
+    this.$axios.get('http://localhost:3000/people')
+    .then(({data}) => {
+      this.tableData = data
+    })
+  }
+}
 </script>
 <style scoped>
 .home .companies {
@@ -83,40 +126,28 @@ export default {
   background: #e95338;
   box-shadow: 3px 3px rgba(0, 0, 0, 0.4);
 }
-.listed {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  margin: 0 auto;
+body {
+  font-family: Helvetica, sans-serif;
+  font-weight: 400;
+  margin: 0;
 }
-.listed > div {
-  width: 400px;
-  height: 220px;
+
+main {
+  margin: 30px;
+  height: 85vh;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+}
+
+nav {
+  height: 60px;
+  background: #222;
+  font-size: 32px;
+  color: white;
+  display: flex;
   align-items: center;
-  text-align: left;
-  border: none;
-  padding: 10px;
-  background: #fff;
-  margin: 10px auto;
-  cursor: pointer;
-  box-shadow: 3px 3px rgba(0, 0, 0, 0.4);
-  transition: all 0.2s ease-in-out;
-  border-radius: 10px;
-  appearance: none;
-}
-.listed > div:hover {
-  box-shadow: 6px 6px rgba(0, 0, 0, 0.6);
-}
-.home .listed img {
-  object-fit: cover;
-  border-radius: 50%;
-}
-.text {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  font-size: 1rem;
+  padding-left: 20px;
 }
 .name {
   font-size: 1.5rem;
