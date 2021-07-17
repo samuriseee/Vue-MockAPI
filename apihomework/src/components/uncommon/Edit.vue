@@ -9,7 +9,7 @@
     <transition name="slide" appear>
       <div class="modal" v-if="edit">
         <h1>Update Username</h1>
-        <input type="text" v-model="editName" value="{user.name}" />
+        <input type="text" v-model="editName" />
         <button @click="updateName">Apply</button>
         <h1>Update phoneNumber</h1>
         <input type="text" v-model="editPhone" />
@@ -34,37 +34,29 @@ export default {
   methods: {
     async updateName() {
       let response = await axios
-        .put(
-          `https://60dbf9c3c2b6280017feb5d7.mockapi.io/v1/users/${this.$route.params.id}`,
-          {
-            name: this.editName,
-          }
-        )
+        .put(`http://localhost:3000/people/${this.$route.params.id}`, {
+          name: this.editName,
+        })
         .then(function (response) {
-          location.reload();
           console.log(response);
         })
         .catch(function (error) {
           console.log(error);
         });
-      console.log(response.data);
+      console.log(response);
     },
     async updatePhone() {
       let response = await axios
-        .put(
-          `https://60dbf9c3c2b6280017feb5d7.mockapi.io/v1/users/${this.$route.params.id}`,
-          {
-            phoneNumber: this.editPhone,
-          }
-        )
+        .put(`http://localhost:3000/people/${this.$route.params.id}`, {
+          phone: this.editPhone,
+        })
         .then(function (response) {
-          location.reload();
           console.log(response);
         })
         .catch(function (error) {
           console.log(error);
         });
-      console.log(response.data);
+      console.log(response);
     },
   },
 };

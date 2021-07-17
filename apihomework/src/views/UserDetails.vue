@@ -5,7 +5,10 @@
       <div class="text">
         <div>{{ person.name }}</div>
         <div style="font-size: 1.8rem; opacity: 0.8">
-          {{ person.phoneNumber }}
+          {{ person.phone }}
+        </div>
+        <div style="font-size: 1.8rem; opacity: 0.8">
+          {{ person.email }}
         </div>
       </div>
     </div>
@@ -32,23 +35,23 @@ export default {
       edit: false,
       editName: "",
       editPhone: "",
-      url:"http://localhost:3000/people",
+      url: "http://localhost:3000/people",
     };
   },
   async created() {
-  await axios.get(`http://localhost:3000/people/${this.$route.params.id}`).then((response) => {
-        console.log(response.data); 
-        this.person = response.data; 
-      }).catch(function(error) {
+    await axios
+      .get(`http://localhost:3000/people/${this.$route.params.id}`)
+      .then((response) => {
+        console.log(response.data);
+        this.person = response.data;
+      })
+      .catch(function (error) {
         console.log(error);
       });
-
   },
   methods: {
     deleteUser(id) {
-      axios.delete(
-        `http://localhost:3000/people/${id}`
-      );
+      axios.delete(`http://localhost:3000/people/${id}`);
       this.$router.push(`/`);
     },
   },
@@ -97,7 +100,7 @@ body {
   flex-direction: column;
   margin: 20px;
   border-radius: 7px;
-  cursor:pointer;
+  cursor: pointer;
 }
 .button button:hover {
   background: #e95338;

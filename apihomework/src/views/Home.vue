@@ -18,17 +18,17 @@
         v-if="tableData"
         :theData="computedTableData"
         :config="config"
-        :style="{height: '600px'}"
+        :style="{ height: '600px' }"
       />
     </main>
   </div>
 </template>
 
 <script>
-import Table from '../components/uncommon/Table.vue'
-import Pagination from '../components/uncommon/Pagination'
+import Table from "../components/uncommon/Table.vue";
+import Pagination from "../components/uncommon/Pagination";
 
-const perPageOptions = [10, 20, 30]
+const perPageOptions = [10, 20, 30];
 
 export default {
   components: {
@@ -39,54 +39,53 @@ export default {
     return {
       perPageOptions,
       tableData: undefined,
-      pagination: { page: 1, perPage: perPageOptions[0] },
+      pagination: { page: 1, perPage: perPageOptions[1] },
       config: [
         {
-          key: 'avatar',
-          title: 'Avatar',
-          type: 'image'
+          key: "avatar",
+          title: "Avatar",
+          type: "image",
         },
         {
-          key: 'name',
-          title: 'Name',
-          type: 'text'
+          key: "name",
+          title: "Name",
+          type: "text",
         },
         {
-          key: 'city',
-          title: 'City',
-          type: 'text'
+          key: "city",
+          title: "City",
+          type: "text",
         },
         {
-          key: 'companyName',
-          title: 'Company',
-          type: 'text'
+          key: "companyName",
+          title: "Company",
+          type: "text",
         },
         {
-          key: 'createdAt',
-          title: 'Signup Date',
-          type: 'date'
-        }
-      ]
-    }
+          key: "createdAt",
+          title: "Signup Date",
+          type: "date",
+        },
+      ],
+    };
   },
   computed: {
-    computedTableData () {
-      if (!this.tableData) return []
+    computedTableData() {
+      if (!this.tableData) return [];
       else {
-        const firstIndex = (this.pagination.page - 1) * this.pagination.perPage
-        const lastIndex = this.pagination.page * this.pagination.perPage
+        const firstIndex = (this.pagination.page - 1) * this.pagination.perPage;
+        const lastIndex = this.pagination.page * this.pagination.perPage;
 
-        return this.tableData.slice(firstIndex, lastIndex)
+        return this.tableData.slice(firstIndex, lastIndex);
       }
-    }
+    },
   },
-  mounted () {
-    this.$axios.get('http://localhost:3000/people')
-    .then(({data}) => {
-      this.tableData = data
-    })
-  }
-}
+  mounted() {
+    this.$axios.get("http://localhost:3000/people").then(({ data }) => {
+      this.tableData = data;
+    });
+  },
+};
 </script>
 <style scoped>
 .home .companies {

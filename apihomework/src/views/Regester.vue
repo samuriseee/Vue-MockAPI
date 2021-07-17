@@ -3,13 +3,11 @@
     <form v-on:submit.prevent="addUser()" class="pluginBox">
       <h1>SIGN IN</h1>
       <p>Username:</p>
-      <input type="text" v-model="newUser.name" placeholder="aaaaa" required/>
+      <input type="text" v-model="newUser.name" placeholder="aaaaa" required />
       <p>Where do you work?:</p>
-      <input type="text" v-model="newUser.city" required>
+      <input type="text" v-model="newUser.city" required />
       <p>Which company?:</p>
-      <input type="text" v-model="newUser.companyName" required>
-      <!-- <p>Avatar profile</p>
-      <input type="text" v-model="newUser.avatar" /> -->
+      <input type="text" v-model="newUser.companyName" required />
       <input type="submit" value="Resgeter" />
       <a @click="$router.push('/')"> Already have? </a>
     </form>
@@ -37,7 +35,6 @@ export default {
         phoneNumber: this.newUser.phoneNumber,
         city: this.newUser.city,
         companyName: this.newUser.companyName,
-        
       });
       this.$router.push(`/`);
     },
