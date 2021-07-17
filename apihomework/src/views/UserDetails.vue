@@ -10,7 +10,7 @@
       </div>
     </div>
     <div class="button">
-      <button @click="deleteUser(user.id)">
+      <button @click="deleteUser(person.id)">
         <i class="fas fa-trash-alt"></i>Delete
       </button>
       <editCPN />
@@ -28,7 +28,7 @@ export default {
   },
   data: function () {
     return {
-      user: {},
+      person: {},
       edit: false,
       editName: "",
       editPhone: "",
@@ -36,11 +36,13 @@ export default {
     };
   },
   async created() {
-    const response = await axios.get(
-      `http://localhost:3000/people/${this.$route.params.id}`
-    );
-    this.user = response.data;
-    console.log(response);
+  await axios.get(`http://localhost:3000/people/${this.$route.params.id}`).then((response) => {
+        console.log(response.data); 
+        this.person = response.data; 
+      }).catch(function(error) {
+        console.log(error);
+      });
+
   },
   methods: {
     deleteUser(id) {
