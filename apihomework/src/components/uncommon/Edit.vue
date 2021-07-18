@@ -33,7 +33,7 @@ export default {
   },
   methods: {
     async updateName() {
-      let response = await axios
+      const response = await axios
         .put(`http://localhost:3000/people/${this.$route.params.id}`, {
           name: this.editName,
         })
@@ -46,7 +46,7 @@ export default {
       console.log(response);
     },
     async updatePhone() {
-      let response = await axios
+      const response = await axios
         .put(`http://localhost:3000/people/${this.$route.params.id}`, {
           phone: this.editPhone,
         })

@@ -10,17 +10,17 @@
       </thead>
       <tbody>
         <tr
-          v-for="(row, index) in theData"
-          :key="index"
-          @click="$router.push(`/people/${index + 1}`)"
+          v-for="person in theData"
+          :key="'person-' + person.id"
+          @click="$router.push(`/people/`+ person.id)"
         >
           <td v-for="(obj, ind) in config" :key="ind">
-            <span v-if="obj.type === 'text'">{{ row[obj.key] }}</span>
+            <span v-if="obj.type === 'text'">{{ person[obj.key]}}</span>
             <span v-if="obj.type === 'date'"
-              >{{ new Date(row[obj.key]).toLocaleDateString() }}
+              >{{ new Date(person.createdAt).toLocaleDateString() }}
             </span>
             <figure v-if="obj.type === 'image'">
-              <img :src="row[obj.key]" height="60px" />
+              <img :src="person.avatar" height="60px" />
             </figure>
           </td>
         </tr>
@@ -32,8 +32,9 @@
 <script>
 export default {
   props: ["theData", "config"],
-  return: {},
-  methods: {},
+  data() {
+    return {}
+  }
 };
 </script>
 

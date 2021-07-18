@@ -33,10 +33,6 @@ export default {
     },
   },
   methods: {
-    // setPerPage(amount) {
-    //     this.perPage = amount
-    //     this.$emit('input', {page: this.page, perPage: amount})
-    // },
     changePage(val) {
       switch (val) {
         case 0:

@@ -5,22 +5,28 @@
       <p>List of Companies on the platform</p>
     </div>
     <div class="filter">
+      
       <Pagination
         v-if="tableData"
         :totalRecords="tableData.length"
         :perPageOptions="perPageOptions"
         v-model="pagination"
       />
+      
       <button><i class="fas fa-filter"></i>Filter</button>
     </div>
+    
     <main>
+      
       <Table
         v-if="tableData"
         :theData="computedTableData"
         :config="config"
         :style="{ height: '600px' }"
       />
+      
     </main>
+    
   </div>
 </template>
 
@@ -54,6 +60,11 @@ export default {
         {
           key: "city",
           title: "City",
+          type: "text",
+        },
+        {
+          key: "phone",
+          title: "Phone",
           type: "text",
         },
         {
@@ -132,8 +143,6 @@ body {
 }
 
 main {
-  margin: 30px;
-  height: 85vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -152,4 +161,5 @@ nav {
   font-size: 1.5rem;
   padding: 10px;
 }
+
 </style>
