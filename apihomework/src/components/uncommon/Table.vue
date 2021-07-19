@@ -12,10 +12,10 @@
         <tr
           v-for="person in theData"
           :key="'person-' + person.id"
-          @click="$router.push(`/people/`+ person.id)"
+          @click="$router.push(`/people/` + person.id)"
         >
           <td v-for="(obj, ind) in config" :key="ind">
-            <span v-if="obj.type === 'text'">{{ person[obj.key]}}</span>
+            <span v-if="obj.type === 'text'">{{ person[obj.key] }}</span>
             <span v-if="obj.type === 'date'"
               >{{ new Date(person.createdAt).toLocaleDateString() }}
             </span>
@@ -33,15 +33,15 @@
 export default {
   props: ["theData", "config"],
   data() {
-    return {}
-  }
+    return {};
+  },
 };
 </script>
 
 <style scoped>
 .awesome-table {
   border: 1px solid #999;
-  border-radius: 4px;
+  border-radius: 10px;
   color: #333;
   overflow: auto;
   margin-top: 30px;
@@ -67,13 +67,15 @@ table {
 table th {
   position: sticky;
   top: 0;
-  background: #f1f1f1;
+  background: #397c95;
   padding: 10px 5px;
   text-align: left;
   border-bottom: 1px solid #999;
+  border-radius: 5px;
+  color: #fff;
 }
 table td {
-  padding: 5px 5px;
+  padding: 8px 5px;
   text-align: left;
 }
 </style>

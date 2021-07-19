@@ -3,8 +3,8 @@
     <div class="logo" @click="$router.push('/')">DAta.</div>
     <div>
       <ul>
-        <li><router-link to="/">Home</router-link></li>
-        <li><router-link to="/regester">Regester</router-link></li>
+        <li><router-link to="/">HOME</router-link></li>
+        <li><router-link to="/regester">REGISTER</router-link></li>
       </ul>
     </div>
   </div>
@@ -20,22 +20,22 @@ export default {};
   justify-content: flex-start;
   align-items: center;
   margin: 0 auto;
-  background: #fff;
+  background: #043254;
   padding: 20px;
   border-radius: 15px;
   font-size: 18px;
 }
 #nav a {
   text-decoration: none;
-  color: black;
+  color: #fff;
   margin-left: 10px;
   transition: 0.2s;
 }
 #nav a:hover {
-  color: #fa7c65;
+  color: #a8dac0;
 }
 #nav a.router-link-exact-active {
-  color: #fa7c65;
+  color: #a8dac0;
 }
 #nav div {
   display: flex;
@@ -49,7 +49,7 @@ export default {};
 }
 .logo {
   cursor: pointer;
-  color: #000;
+  color: #fff;
   font-weight: 600;
   font-size: 35px;
   font-family: "AlphaCentauri";

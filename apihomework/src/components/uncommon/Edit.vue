@@ -7,15 +7,35 @@
       <div class="modal-overlay" v-if="edit" @click="edit = false"></div>
     </transition>
     <transition name="slide" appear>
-      <div class="modal" v-if="edit">
-        <h1>Update Username</h1>
-        <input type="text" v-model="editName" />
-        <button @click="updateName">Apply</button>
-        <h1>Update phoneNumber</h1>
-        <input type="text" v-model="editPhone" />
-        <button @click="updatePhone">Apply</button>
-        <button @click="edit = false">Close Edit</button>
-      </div>
+      <form
+        class="modal"
+        v-if="edit"
+        v-on:submit.prevent="
+          $router.push({
+            path: '/',
+          })
+        "
+      >
+        <div class="flex">
+          <h1>Username</h1>
+          <input type="text" v-model="editName" required />
+          <h1>Phone Number</h1>
+          <input type="text" v-model="editPhone" required />
+        </div>
+
+        <h1>Email</h1>
+        <input type="text" v-model="editEmail" required />
+        <div class="flex">
+          <h1>Company Name</h1>
+          <input type="text" v-model="editCompany" required />
+          <h1>City</h1>
+          <input type="text" v-model="editCity" required />
+        </div>
+        <div>
+          <button @click="update">Apply</button>
+          <button @click="edit = false">Close</button>
+        </div>
+      </form>
     </transition>
   </div>
 </template>
@@ -29,26 +49,21 @@ export default {
       edit: false,
       editName: "",
       editPhone: "",
+      editEmail: "",
+      editCompany: "",
+      editCity: "",
     };
   },
   methods: {
-    async updateName() {
+    async update() {
       const response = await axios
         .put(`http://localhost:3000/people/${this.$route.params.id}`, {
           name: this.editName,
-        })
-        .then(function (response) {
-          console.log(response);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-      console.log(response);
-    },
-    async updatePhone() {
-      const response = await axios
-        .put(`http://localhost:3000/people/${this.$route.params.id}`, {
+          avatar: "https://cdn.fakercloud.com/avatars/finchjke_128.jpg",
           phone: this.editPhone,
+          email: this.editEmail,
+          companyName: this.editCompany,
+          city: this.editCity,
         })
         .then(function (response) {
           console.log(response);
@@ -107,18 +122,21 @@ body {
   font-size: 16px;
 }
 .modal button {
-  width: 85px;
-  height: 25px;
+  width: 100px;
+  height: 50px;
   border: none;
   outline: none;
   color: #fff;
-  background: #fa7c65;
+  background: #043254;
   padding: 5px;
   cursor: pointer;
   border-radius: 7px;
+  margin: 20px;
+  font-size: 18px;
+  text-transform: uppercase;
 }
 .modal button:hover {
-  background: #e95338;
+  background: #05416e;
   box-shadow: 3px 3px rgba(0, 0, 0, 0.4);
 }
 .button {
@@ -131,7 +149,7 @@ body {
   border: none;
   outline: none;
   color: #fff;
-  background: #fa7c65;
+  background: #5db9b6;
   display: flex;
   flex-direction: column;
   margin: 20px;
@@ -139,7 +157,7 @@ body {
   cursor: pointer;
 }
 .button:hover {
-  background: #e95338;
+  background: #397c95;
   box-shadow: 3px 3px rgba(0, 0, 0, 0.4);
 }
 .button i {

@@ -58,7 +58,7 @@ export default {
 <style>
 .pagination-container {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   color: #444;
   margin-right: 20px;
 }
@@ -76,6 +76,6 @@ section i {
   transition: ease-in-out 0.5s;
 }
 section i:hover {
-  color: #fa7c65;
+  color: #397c95;
 }
 </style>

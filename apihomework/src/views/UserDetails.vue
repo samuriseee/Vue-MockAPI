@@ -95,7 +95,7 @@ body {
   border: none;
   outline: none;
   color: #fff;
-  background: #fa7c65;
+  background: #a40000;
   display: flex;
   flex-direction: column;
   margin: 20px;
@@ -103,7 +103,7 @@ body {
   cursor: pointer;
 }
 .button button:hover {
-  background: #e95338;
+  background: #8b0000;
   box-shadow: 3px 3px rgba(0, 0, 0, 0.4);
 }
 .button button i {

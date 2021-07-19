@@ -5,28 +5,28 @@
       <p>List of Companies on the platform</p>
     </div>
     <div class="filter">
-      
-      <Pagination
-        v-if="tableData"
-        :totalRecords="tableData.length"
-        :perPageOptions="perPageOptions"
-        v-model="pagination"
-      />
-      
-      <button><i class="fas fa-filter"></i>Filter</button>
+      <!-- <div class="search-wrapper">
+    <input type="text" v-model="search" placeholder="Search title.."/>
+        <label>Search title:</label>
     </div>
-    
-    <main>
       
+      <button><i class="fas fa-filter"></i>Filter</button> -->
+    </div>
+
+    <main>
       <Table
         v-if="tableData"
         :theData="computedTableData"
         :config="config"
         :style="{ height: '600px' }"
       />
-      
     </main>
-    
+    <Pagination
+      v-if="tableData"
+      :totalRecords="tableData.length"
+      :perPageOptions="perPageOptions"
+      v-model="pagination"
+    />
   </div>
 </template>
 
@@ -45,6 +45,7 @@ export default {
     return {
       perPageOptions,
       tableData: undefined,
+      search: "",
       pagination: { page: 1, perPage: perPageOptions[1] },
       config: [
         {
@@ -89,6 +90,11 @@ export default {
 
         return this.tableData.slice(firstIndex, lastIndex);
       }
+    },
+    filteredList() {
+      return this.people.filter((person) => {
+        return person.title.toLowerCase().includes(this.search.toLowerCase());
+      });
     },
   },
   mounted() {
@@ -161,5 +167,4 @@ nav {
   font-size: 1.5rem;
   padding: 10px;
 }
-
 </style>

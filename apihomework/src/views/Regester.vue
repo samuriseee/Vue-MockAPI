@@ -1,15 +1,23 @@
 <template>
   <div>
     <form v-on:submit.prevent="addUser()" class="pluginBox">
-      <h1>SIGN IN</h1>
-      <p>Username:</p>
-      <input type="text" v-model="newUser.name" placeholder="aaaaa" required />
-      <p>Where do you work?:</p>
-      <input type="text" v-model="newUser.city" required />
-      <p>Which company?:</p>
-      <input type="text" v-model="newUser.companyName" required />
-      <input type="submit" value="Resgeter" />
-      <a @click="$router.push('/')"> Already have? </a>
+      <h1>Add new user</h1>
+      <div class="flex">
+        <p>Username:</p>
+        <input type="text" v-model="newUser.name" required />
+        <p>City:</p>
+        <input type="text" v-model="newUser.city" required />
+      </div>
+      <p>Email:</p>
+      <input type="text" v-model="newUser.email" required />
+      <div class="flex">
+        <p>Company:</p>
+        <input type="text" v-model="newUser.companyName" required />
+        <p>Phone:</p>
+        <input type="text" v-model="newUser.phone" required />
+      </div>
+      <input type="submit" value="Register" />
+      <a @click="$router.push('/')" style="margin-top: 10px"> Already have? </a>
     </form>
   </div>
 </template>
@@ -19,7 +27,7 @@ import axios from "axios";
 export default {
   data: function () {
     return {
-      user: {},
+      person: {},
       newUser: {
         name: "",
         phoneNumber: "",
@@ -32,9 +40,12 @@ export default {
     addUser() {
       axios.post("http://localhost:3000/people", {
         name: this.newUser.name,
-        phoneNumber: this.newUser.phoneNumber,
+        phoneNumber: this.newUser.phone,
         city: this.newUser.city,
         companyName: this.newUser.companyName,
+        avatar: "https://cdn.fakercloud.com/avatars/lebronjennan_128.jpg",
+        email: this.newUser.email,
+        phone: this.newUser.phone,
       });
       this.$router.push(`/`);
     },
@@ -44,25 +55,30 @@ export default {
 
 <style>
 .pluginBox {
-  width: 320px;
+  width: 600px;
   background: transparent;
   border: 1px solid #fff;
   color: #000;
-  top: 50%;
-  left: 50%;
-  position: absolute;
-  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
   box-sizing: border-box;
+  justify-content: center;
+  margin-top: 100px;
   padding: 20px;
   box-shadow: 8px 8px 50px #000;
   border-radius: 7px;
   transition: 0.5s;
 }
+.pluginBox .flex {
+  display: flex;
+  justify-content: space-evenly;
+}
 .pluginBox p {
+  position: relative;
   text-align: left;
 }
 .pluginBox input {
-  width: 100%;
   margin-bottom: 20px;
   font-size: 16px;
 }
@@ -76,24 +92,27 @@ export default {
   font-size: 16px;
 }
 .pluginBox input[type="submit"] {
+  width: 50%;
+  margin: 0 auto;
   border: none;
   outline: none;
   height: 40px;
-  background: #fa7c65;
+  background: #043254;
   color: #fff;
   font-size: 18px;
   border-radius: 20px;
-  transition: 0.2s;
+  transition: 0.4s;
   cursor: pointer;
 }
 .pluginBox input[type="submit"]:hover {
-  background: #e95338;
+  background: #05416e;
   color: #fff;
+  box-shadow: 3px 3px rgba(0, 0, 0, 0.4);
 }
 .pluginBox a {
   cursor: pointer;
 }
 .pluginBox a:hover {
-  color: #fa7c65;
+  color: #05416e;
 }
 </style>
