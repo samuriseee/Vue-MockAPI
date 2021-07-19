@@ -34,7 +34,7 @@
 import Table from "../components/uncommon/Table.vue";
 import Pagination from "../components/uncommon/Pagination";
 
-const perPageOptions = [10, 20, 30];
+const perPageOptions = [15, 20, 30];
 
 export default {
   components: {
@@ -46,7 +46,7 @@ export default {
       perPageOptions,
       tableData: undefined,
       search: "",
-      pagination: { page: 1, perPage: perPageOptions[1] },
+      pagination: { page: 1, perPage: perPageOptions[0] },
       config: [
         {
           key: "avatar",

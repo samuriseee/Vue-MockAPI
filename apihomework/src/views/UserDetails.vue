@@ -1,14 +1,18 @@
 <template>
   <div class="container">
     <div class="userInfo">
-      <img :src="person.avatar" alt="" />
+      <img :src="person.avatar" alt="" class="avatar" />
       <div class="text">
-        <div>{{ person.name }}</div>
+        <div style="text-align: center">{{ person.name }}</div>
         <div style="font-size: 1.8rem; opacity: 0.8">
-          {{ person.phone }}
+          <span> Phone Number: </span>{{ person.phone }}
         </div>
         <div style="font-size: 1.8rem; opacity: 0.8">
-          {{ person.email }}
+          <span> Personal Email: </span> {{ person.email }}
+          <div>
+            <span> Working at: </span>{{ person.companyName }} -
+            {{ person.city }}
+          </div>
         </div>
       </div>
     </div>
@@ -72,15 +76,20 @@ body {
   justify-content: center;
   align-items: center;
 }
-.userInfo img {
+.userInfo .avatar {
   width: 300px;
   height: 300px;
   object-fit: cover;
   padding: 30px;
-  border-radius: 50%;
+  border-radius: 10%;
 }
 .userInfo .text {
   font-size: 2.5rem;
+  text-align: justify;
+}
+.userInfo .text span {
+  font-weight: 800;
+  color: #043254;
 }
 .button {
   display: flex;

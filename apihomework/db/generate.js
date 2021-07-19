@@ -9,6 +9,7 @@ module.exports = function() {
                 name: faker.name.findName(),
                 avatar: faker.internet.avatar(),
                 phone: faker.phone.phoneNumber(),
+                coverPhoto: faker.image.image(),
                 email: faker.internet.email(this.name),
                 createdAt: faker.date.recent(),
                 companyName: faker.company.companyName(),
